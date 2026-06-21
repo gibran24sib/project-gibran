@@ -64,7 +64,7 @@ const Header = ({ isSidebarOpen, setIsSidebarOpen }) => {
                   <User size={16} className="text-primary" />
                 </div>
                 <div className="hidden md:block text-left">
-                    <p className="text-xs font-bold text-gray-800 leading-none">drg. Rizky</p>
+                    <p className="text-xs font-bold text-gray-800 leading-none">drg. Gibran</p>
                     <p className="text-[10px] font-medium text-gray-500 mt-1">Administrator</p>
                 </div>
                 <ChevronDown size={14} className="hidden md:block text-gray-400" />
