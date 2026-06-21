@@ -1,5 +1,5 @@
-import React from "react";
-import { User, Calendar, Users, Phone } from "lucide-react";
+import React from 'react';
+import { User, Calendar, Users, Phone } from 'lucide-react';
 
 const RecentPatients = ({ patients = [], onViewPatient }) => {
   if (patients.length === 0) {
@@ -23,9 +23,7 @@ const RecentPatients = ({ patients = [], onViewPatient }) => {
           <h2 className="text-lg font-bold text-txt-primary">Pasien Baru</h2>
           <p className="text-sm text-gray-500 mt-1">Minggu ini</p>
         </div>
-        <button className="text-xs text-primary hover:underline">
-          Lihat Semua
-        </button>
+        <button className="text-xs text-primary hover:underline">Lihat Semua</button>
       </div>
       <div className="divide-y divide-gray-100">
         {patients.map((patient) => (
@@ -42,19 +40,13 @@ const RecentPatients = ({ patients = [], onViewPatient }) => {
                 <div>
                   <p className="font-bold text-gray-900">{patient.full_name}</p>
                   <p className="text-xs text-gray-500 flex items-center gap-2">
-                    <span className="flex items-center gap-1">
-                      <Calendar size={10} /> {patient.birth_date || "-"}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Phone size={10} /> {patient.phone || "-"}
-                    </span>
+                    <span className="flex items-center gap-1"><Calendar size={10} /> {patient.birth_date || '-'}</span>
+                    <span className="flex items-center gap-1"><Phone size={10} /> {patient.phone || '-'}</span>
                   </p>
                 </div>
               </div>
               <div className="text-right">
-                <p className="text-xs text-primary font-medium">
-                  {patient.rm_number}
-                </p>
+                <p className="text-xs text-primary font-medium">{patient.rm_number}</p>
               </div>
             </div>
           </div>

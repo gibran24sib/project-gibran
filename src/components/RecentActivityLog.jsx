@@ -1,19 +1,12 @@
-import React from "react";
-import {
-  History,
-  UserPlus,
-  Edit,
-  Trash2,
-  CheckCircle,
-  Clock,
-} from "lucide-react";
+import React from 'react';
+import { History, UserPlus, Edit, Trash2, CheckCircle, Clock } from 'lucide-react';
 
 const actionIcons = {
-  CREATE: { icon: UserPlus, color: "text-green-500", bg: "bg-green-100" },
-  UPDATE: { icon: Edit, color: "text-blue-500", bg: "bg-blue-100" },
-  DELETE: { icon: Trash2, color: "text-red-500", bg: "bg-red-100" },
-  LOGIN: { icon: CheckCircle, color: "text-primary", bg: "bg-primary/10" },
-  default: { icon: History, color: "text-gray-500", bg: "bg-gray-100" },
+  CREATE: { icon: UserPlus, color: 'text-green-500', bg: 'bg-green-100' },
+  UPDATE: { icon: Edit, color: 'text-blue-500', bg: 'bg-blue-100' },
+  DELETE: { icon: Trash2, color: 'text-red-500', bg: 'bg-red-100' },
+  LOGIN: { icon: CheckCircle, color: 'text-primary', bg: 'bg-primary/10' },
+  default: { icon: History, color: 'text-gray-500', bg: 'bg-gray-100' },
 };
 
 const RecentActivityLog = ({ logs = [], onViewAll }) => {
@@ -41,10 +34,7 @@ const RecentActivityLog = ({ logs = [], onViewAll }) => {
           <History size={18} />
           Aktivitas Terkini
         </h2>
-        <button
-          onClick={onViewAll}
-          className="text-xs text-primary hover:underline"
-        >
+        <button onClick={onViewAll} className="text-xs text-primary hover:underline">
           Lihat Semua
         </button>
       </div>
@@ -52,9 +42,9 @@ const RecentActivityLog = ({ logs = [], onViewAll }) => {
         {logs.map((log) => {
           const actionConfig = actionIcons[log.action] || actionIcons.default;
           const Icon = actionConfig.icon;
-          const timeAgo = new Date(log.created_at).toLocaleTimeString("id-ID", {
-            hour: "2-digit",
-            minute: "2-digit",
+          const timeAgo = new Date(log.created_at).toLocaleTimeString('id-ID', { 
+            hour: '2-digit', 
+            minute: '2-digit' 
           });
 
           return (
@@ -65,15 +55,11 @@ const RecentActivityLog = ({ logs = [], onViewAll }) => {
                 </div>
                 <div className="flex-1">
                   <p className="text-sm text-gray-700">
-                    <span className="font-semibold">{log.user_name}</span>{" "}
-                    {log.action === "CREATE"
-                      ? "menambahkan"
-                      : log.action === "UPDATE"
-                        ? "mengubah"
-                        : log.action === "DELETE"
-                          ? "menghapus"
-                          : "melakukan"}{" "}
-                    {log.table_name?.replace("_", " ")}
+                    <span className="font-semibold">{log.user_name}</span>
+                    {' '}{log.action === 'CREATE' ? 'menambahkan' : 
+                           log.action === 'UPDATE' ? 'mengubah' :
+                           log.action === 'DELETE' ? 'menghapus' : 'melakukan'}{' '}
+                    {log.table_name?.replace('_', ' ')}
                   </p>
                   <p className="text-xs text-gray-400 flex items-center gap-2 mt-1">
                     <Clock size={10} />

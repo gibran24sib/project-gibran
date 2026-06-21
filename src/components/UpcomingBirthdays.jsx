@@ -1,5 +1,5 @@
-import React from "react";
-import { Gift, Calendar, Cake, Send } from "lucide-react";
+import React from 'react';
+import { Gift, Calendar, Cake, Send } from 'lucide-react';
 
 const UpcomingBirthdays = ({ patients = [], onSendGift, onSendMessage }) => {
   if (patients.length === 0) {
@@ -29,8 +29,8 @@ const UpcomingBirthdays = ({ patients = [], onSendGift, onSendMessage }) => {
           </h2>
           <p className="text-sm text-gray-500 mt-1">Kirim ucapan & reward</p>
         </div>
-        <button
-          onClick={() => onSendMessage && onSendMessage("all")}
+        <button 
+          onClick={() => onSendMessage && onSendMessage('all')}
           className="text-xs bg-pink-500 text-white px-3 py-1 rounded-full hover:bg-pink-600"
         >
           Kirim Semua
@@ -40,8 +40,8 @@ const UpcomingBirthdays = ({ patients = [], onSendGift, onSendMessage }) => {
         {patients.map((patient) => {
           const birthDate = new Date(patient.birth_date);
           const day = birthDate.getDate();
-          const month = birthDate.toLocaleString("id-ID", { month: "long" });
-
+          const month = birthDate.toLocaleString('id-ID', { month: 'long' });
+          
           return (
             <div key={patient.id} className="p-4">
               <div className="flex items-center justify-between">
@@ -50,9 +50,7 @@ const UpcomingBirthdays = ({ patients = [], onSendGift, onSendMessage }) => {
                     <Cake size={20} className="text-pink-500" />
                   </div>
                   <div>
-                    <p className="font-bold text-gray-900">
-                      {patient.full_name}
-                    </p>
+                    <p className="font-bold text-gray-900">{patient.full_name}</p>
                     <p className="text-xs text-gray-500 flex items-center gap-1">
                       <Calendar size={10} /> {day} {month}
                     </p>
@@ -60,14 +58,14 @@ const UpcomingBirthdays = ({ patients = [], onSendGift, onSendMessage }) => {
                   </div>
                 </div>
                 <div className="flex gap-2">
-                  <button
+                  <button 
                     onClick={() => onSendGift && onSendGift(patient.id)}
                     className="px-3 py-1 text-xs bg-yellow-100 text-yellow-700 rounded-full hover:bg-yellow-200"
                   >
                     <Gift size={12} className="inline mr-1" />
                     Kirim Reward
                   </button>
-                  <button
+                  <button 
                     onClick={() => onSendMessage && onSendMessage(patient.id)}
                     className="px-3 py-1 text-xs bg-primary/10 text-primary rounded-full hover:bg-primary/20"
                   >

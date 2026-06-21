@@ -1,21 +1,16 @@
-import React from "react";
-import { DollarSign, TrendingUp, TrendingDown } from "lucide-react";
+import React from 'react';
+import { DollarSign, TrendingUp, TrendingDown } from 'lucide-react';
 
-const RevenueChart = ({ data = [], period = "weekly", onPeriodChange }) => {
+const RevenueChart = ({ data = [], period = 'weekly', onPeriodChange }) => {
   const totalRevenue = data.reduce((sum, item) => sum + item.revenue, 0);
-  const percentageChange =
-    data.length >= 2
-      ? (
-          ((data[data.length - 1].revenue - data[data.length - 2].revenue) /
-            data[data.length - 2].revenue) *
-          100
-        ).toFixed(1)
-      : 0;
+  const percentageChange = data.length >= 2 
+    ? ((data[data.length-1].revenue - data[data.length-2].revenue) / data[data.length-2].revenue * 100).toFixed(1)
+    : 0;
   const isPositive = percentageChange >= 0;
 
-  const maxRevenue = Math.max(...data.map((d) => d.revenue), 1);
+  const maxRevenue = Math.max(...data.map(d => d.revenue), 1);
 
-  const periods = ["daily", "weekly", "monthly", "yearly"];
+  const periods = ['daily', 'weekly', 'monthly', 'yearly'];
 
   return (
     <div className="card">
@@ -29,14 +24,8 @@ const RevenueChart = ({ data = [], period = "weekly", onPeriodChange }) => {
             <p className="text-2xl font-bold text-gray-900 mt-1">
               Rp {totalRevenue.toLocaleString()}
             </p>
-            <p
-              className={`text-sm flex items-center gap-1 ${isPositive ? "text-green-600" : "text-red-600"}`}
-            >
-              {isPositive ? (
-                <TrendingUp size={14} />
-              ) : (
-                <TrendingDown size={14} />
-              )}
+            <p className={`text-sm flex items-center gap-1 ${isPositive ? 'text-green-600' : 'text-red-600'}`}>
+              {isPositive ? <TrendingUp size={14} /> : <TrendingDown size={14} />}
               {percentageChange}% dari periode sebelumnya
             </p>
           </div>
@@ -46,9 +35,9 @@ const RevenueChart = ({ data = [], period = "weekly", onPeriodChange }) => {
                 key={p}
                 onClick={() => onPeriodChange && onPeriodChange(p)}
                 className={`px-3 py-1 text-xs rounded-lg font-medium transition ${
-                  period === p
-                    ? "bg-primary text-white"
-                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                  period === p 
+                    ? 'bg-primary text-white' 
+                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                 }`}
               >
                 {p.charAt(0).toUpperCase() + p.slice(1)}
@@ -63,13 +52,10 @@ const RevenueChart = ({ data = [], period = "weekly", onPeriodChange }) => {
             {data.map((item, index) => {
               const height = (item.revenue / maxRevenue) * 100;
               return (
-                <div
-                  key={index}
-                  className="flex flex-col items-center w-12 group"
-                >
-                  <div
+                <div key={index} className="flex flex-col items-center w-12 group">
+                  <div 
                     className="w-8 bg-gradient-to-t from-primary to-secondary rounded-t-lg transition-all duration-300 hover:opacity-80 cursor-pointer"
-                    style={{ height: `${height}%`, minHeight: "4px" }}
+                    style={{ height: `${height}%`, minHeight: '4px' }}
                   >
                     <div className="opacity-0 group-hover:opacity-100 transition bg-black text-white text-xs rounded px-2 py-1 absolute -mt-8 -ml-4">
                       Rp {item.revenue.toLocaleString()}

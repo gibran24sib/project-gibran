@@ -85,4 +85,3 @@ const LowStockAlert = ({ items = [], onViewInventory }) => {
 };
 
 export default LowStockAlert;
-
