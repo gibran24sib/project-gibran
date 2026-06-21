@@ -1,122 +1,62 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import React, { Suspense } from "react";
+import { Route, Routes } from "react-router-dom";
+import Loading from "./components/Loading";
+
+const Dashboard = React.lazy(() => import("./pages/Dashboard"));
+const Login = React.lazy(() => import("./pages/auth/Login"));
+const Register = React.lazy(() => import("./pages/auth/Register"));
+const Forgot = React.lazy(() => import("./pages/auth/Forgot"));
+const Dokter = React.lazy(() => import("./pages/Dokter"));
+const DetailDokter = React.lazy(() => import("./pages/DetailDokter"));
+const Patients = React.lazy(() => import("./pages/Patients"));
+const Inventory = React.lazy(() => import("./pages/Inventory"));
+const Loyalty = React.lazy(() => import("./pages/Loyalty"));
+const Surveys = React.lazy(() => import("./pages/Surveys"));
+const PatientDetail = React.lazy(() => import("./pages/PatientDetail"));
+const ActivityLogs = React.lazy(() => import("./pages/ActivityLogs"));
+const Promotions = React.lazy(() => import("./pages/Promotions"));
+const Appointments = React.lazy(() => import("./pages/Appointments"));
+const Reports = React.lazy(() => import("./pages/Reports"));
+const Settings = React.lazy(() => import("./pages/Settings"));
+const Examination = React.lazy(() => import("./pages/Examination"));
+const LandingPage = React.lazy(() => import("./pages/LandingPage"));
+const AuthLayout = React.lazy(() => import("./layouts/AuthLayout"));
+const MainLayout = React.lazy(() => import("./layouts/MainLayout"));
+const NotFound = React.lazy(() => import("./pages/NotFound"));
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <Suspense fallback={<Loading />}>
+      <Routes>
+        <Route path="/landing" element={<LandingPage />} />
 
-      <div className="ticks"></div>
+        <Route element={<MainLayout />}>
+          <Route path="/patients" element={<Patients />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dokter" element={<Dokter />} />
+          <Route path="/dokter/:id" element={<DetailDokter />} />
+          <Route path="/inventory" element={<Inventory />} />
+          <Route path="/loyalty" element={<Loyalty />} />
+          <Route path="/surveys" element={<Surveys />} />
+          <Route path="/patients/:id" element={<PatientDetail />} />
+          <Route path="/examination/:id" element={<Examination />} />
+          <Route path="/promotions" element={<Promotions />} />
+          <Route path="/appointments" element={<Appointments />} />
+          <Route path="/reports" element={<Reports />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/activity-logs" element={<ActivityLogs />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+        <Route element={<AuthLayout />}>
+          <Route path="/" element={<Login />} />
+           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/forgot" element={<Forgot />} />
+        </Route>
+      </Routes>
+    </Suspense>
+  );
 }
 
-export default App
+export default App;
