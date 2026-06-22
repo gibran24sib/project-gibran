@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AlertCircle, Eye, EyeOff, CheckCircle } from 'lucide-react';
-import dentalAPI from '../../services/dentalAPI';
+import { dentalAPI } from '../../services/dentalAPI';
 
 const Register = () => {
   const navigate = useNavigate();

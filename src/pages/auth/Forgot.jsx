@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, CheckCircle, AlertCircle } from 'lucide-react';
-import dentalAPI from '../../services/dentalAPI';
+import { dentalAPI } from '../../services/dentalAPI';
 
 const Forgot = () => {
   const [email, setEmail] = useState('');
